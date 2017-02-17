@@ -29,12 +29,22 @@ namespace ConfiguringApps
             loggerFactory.AddConsole(LogLevel.Debug);
             loggerFactory.AddDebug(LogLevel.Debug);
 
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseMiddleware<ErrorMiddleware>();
+            //    app.UseMiddleware<BrowserTypeMiddleware>();
+            //    app.UseMiddleware<ShortCircuitMiddleware>();
+            //    app.UseMiddleware<ContentMiddleware>();
+            //}
+
             if (env.IsDevelopment())
             {
-                app.UseMiddleware<ErrorMiddleware>();
-                app.UseMiddleware<BrowserTypeMiddleware>();
-                app.UseMiddleware<ShortCircuitMiddleware>();
-                app.UseMiddleware<ContentMiddleware>();
+                app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseMvc(routes => {
