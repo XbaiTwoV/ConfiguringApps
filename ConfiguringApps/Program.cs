@@ -15,7 +15,8 @@ namespace ConfiguringApps
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
+                //.UseStartup<Startup>()
+                .UseStartup("ConfiguringApps")
                 .UseApplicationInsights()
                 .Build();
 
